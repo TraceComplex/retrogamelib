@@ -103,8 +103,7 @@ class Player(Collidable):
         self.right_images = [
             load_image("data/bubbman-1.png"),
             load_image("data/bubbman-2.png"),
-            load_image("data/bubbman-4.png"),
-            load_image("data/bubbman-5.png"),
+            load_image("data/bubbman-3.png")
         ]
         self.left_images = []
         for img in self.right_images:
@@ -172,7 +171,7 @@ class Player(Collidable):
         if self.punch_time > 3:
             imgframe = 2
 
-        self.image = self.images[imgframe]
+        self.image = self.images[int(imgframe)]
 
         if button.is_held(A_BUTTON):
             self.jump_speed += 0.4
@@ -248,7 +247,7 @@ class Baddie(Collidable):
 
     def update(self, tiles):
         self.frame += 1
-        self.image = self.images[self.frame / 4 % 2]
+        self.image = self.images[int(self.frame / 4 % 2)]
         self.move(self.dx, 3, tiles)
         if self.dx > 0:
             self.images = self.right_images
@@ -276,7 +275,7 @@ class Coin(Collidable):
 
     def update(self, tiles):
         self.frame += 1
-        self.image = self.images[self.frame / 4 % 4]
+        self.image = self.images[int(self.frame / 4 % 4)]
 
 
 class Points(Collidable):
@@ -309,7 +308,7 @@ class Poof(Collidable):
 
     def update(self, tiles):
         self.frame += 1
-        self.image = self.images[self.frame / 2 % 3]
+        self.image = self.images[int(self.frame / 2 % 3)]
         if self.frame >= 6:
             self.kill()
 
